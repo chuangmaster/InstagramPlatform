@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,8 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InstagramService.cs" />
+    <Compile Include="DTO\AlbumResponseDTO.cs" />
+    <Compile Include="DTO\ExchangeTokenResponseDTO.cs" />
+    <Compile Include="DTO\InstagramResponseBaseDTO.cs" />
+    <Compile Include="DTO\MediaChildrenResponseDTO.cs" />
+    <Compile Include="DTO\UserMediaEdgeResponseDTO.cs" />
+    <Compile Include="DTO\UserMediaResponseDTO.cs" />
+    <Compile Include="DTO\UserProfileResponseDTO.cs" />
+    <Compile Include="Enum\MediaTypeEnum.cs" />
+    <Compile Include="Services\InstagramService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
