@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Service.Enum;
 
 namespace Service.DTO
 {
@@ -13,7 +14,7 @@ namespace Service.DTO
         public string Id { get; set; }
 
         [JsonProperty("media_type")]
-        public string MediaType { get; set; }
+        public MediaTypeEnum MediaType { get; set; }
 
         [JsonProperty("media_url")]
         public string MediaUrl { get; set; }

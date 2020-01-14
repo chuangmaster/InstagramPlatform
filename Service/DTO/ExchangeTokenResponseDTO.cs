@@ -14,5 +14,30 @@ namespace Service.DTO
 
         [JsonProperty("user_id")]
         public string UserId { get; set; }
+
+        [JsonProperty("expires_in")]
+        public int ExpiresIn { get; set; }
+
+        private DateTime ExpireDate
+        {
+            get
+            {
+                if (this.ExpiresIn == 0)
+                {
+                    return CreateDate.AddDays(1);
+                }
+                else
+                {
+                    return CreateDate.AddSeconds(this.ExpiresIn);
+                }
+            }
+        }
+
+        private DateTime CreateDate;
+
+        public ExchangeTokenResponseDTO()
+        {
+            this.CreateDate = DateTime.UtcNow;
+        }
     }
 }

@@ -48,11 +48,12 @@
     <Compile Include="DTO\ExchangeTokenResponseDTO.cs" />
     <Compile Include="DTO\InstagramResponseBaseDTO.cs" />
     <Compile Include="DTO\MediaChildrenResponseDTO.cs" />
+    <Compile Include="DTO\RefreshTokenResponseDTO.cs" />
     <Compile Include="DTO\UserMediaEdgeResponseDTO.cs" />
     <Compile Include="DTO\UserMediaResponseDTO.cs" />
     <Compile Include="DTO\UserProfileResponseDTO.cs" />
     <Compile Include="Enum\MediaTypeEnum.cs" />
-    <Compile Include="Services\InstagramService.cs" />
+    <Compile Include="Services\InstagramBasicDisplayService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

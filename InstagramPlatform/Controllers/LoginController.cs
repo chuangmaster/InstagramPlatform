@@ -21,9 +21,9 @@ namespace InstagramPlatform.Controllers
         [Route("~/Auth")]
         public async Task<ActionResult> Auth(string code, string state)
         {
-            InstagramService service = new InstagramService();
-            var changeResult = await service.ExchangeToken(ClientId, AppSecret, code, "https://29662b76.ngrok.io/Auth");
-            return View();
+            InstagramBasicDisplayService service = new InstagramBasicDisplayService();
+            var changeResult = await service.ExchangeToken(ClientId, AppSecret, code, "https://12bdfb65.ngrok.io/Auth");
+            return RedirectToAction("Index","Home");
         }
     }
 }

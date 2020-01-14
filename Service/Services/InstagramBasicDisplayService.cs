@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
@@ -11,7 +12,7 @@ using Service.DTO;
 
 namespace Services
 {
-    public class InstagramService
+    public class InstagramBasicDisplayService
     {
         /// <summary>
         /// Use code to exchange access token
@@ -48,6 +49,43 @@ namespace Services
                 {
                     throw ex;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Get long lived token
+        /// </summary>
+        /// <param name="app_secret">The app secret</param>
+        /// <param name="short_lived_token">The short lived token</param>
+        /// <returns></returns>
+        public async Task<ExchangeTokenResponseDTO> GetLongLivedToken(string app_secret, string short_lived_token)
+        {
+            var url = "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret={0}&access_token={1}";
+            using (var client = new HttpClient())
+            {
+
+                HttpResponseMessage response = await client.GetAsync(string.Format(url, app_secret, short_lived_token));
+                var responseBody = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<ExchangeTokenResponseDTO>(responseBody);
+                return data;
+            }
+        }
+
+
+        /// <summary>
+        /// Refresh long lived token
+        /// </summary>
+        /// <param name="long_lived_token">The long lived token</param>
+        /// <returns></returns>
+        public async Task<ExchangeTokenResponseDTO> RefreshLongLivedToken(string long_lived_token)
+        {
+            var url = "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token={0}";
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(string.Format(url, long_lived_token));
+                var responseBody = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<ExchangeTokenResponseDTO>(responseBody);
+                return data;
             }
         }
 
@@ -151,6 +189,7 @@ namespace Services
                 }
             }
         }
+
 
         private static void SetDefaultHeaders(HttpClient client)
         {
