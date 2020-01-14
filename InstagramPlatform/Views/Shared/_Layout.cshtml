@@ -11,26 +11,28 @@
 </head>
 
 <body>
-    <div class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-
-        @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarSupportedContent" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("首頁", "Index", "Home", new { area = "" }, null)</li>
-                <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-            </ul>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarSupportedContent" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav justify-content-center">
+                    <li>@Html.ActionLink("首頁", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="container h-auto">
         @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+        </footer>
     </div>
-    <footer class="fixed-bottom">
-        <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
-    </footer>
+   
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
