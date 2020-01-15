@@ -14,5 +14,10 @@ namespace InstagramPlatform.Controllers
 
             return View();
         }
+
+        public ActionResult Profile()
+        {
+            return View();
+        }
     }
 }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Services;
+
 
 namespace InstagramPlatform.Controllers
 {
@@ -15,7 +10,24 @@ namespace InstagramPlatform.Controllers
         [Route("~/Login")]
         public ActionResult Login()
         {
+            if (Session["UserIdentify"] != null)
+            {
+                TempData["Message"] = "You have already logged in";
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+        }
+
+        [Route("~/Logout")]
+        public ActionResult Logout()
+        {
+            if (Session["UserIdentify"] != null)
+            {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Login");
         }
 
         [Route("~/Auth")]
@@ -23,7 +35,17 @@ namespace InstagramPlatform.Controllers
         {
             InstagramBasicDisplayService service = new InstagramBasicDisplayService();
             var changeResult = await service.ExchangeToken(ClientId, AppSecret, code, "https://12bdfb65.ngrok.io/Auth");
-            return RedirectToAction("Index","Home");
+            if (changeResult != null)
+            {
+                var profile = await service.GetUserProfile(changeResult.Token);
+                Session.Add("UserIdentify", changeResult.UserId);
+                Session.Add("UserName", profile.UserName);
+            }
+            else
+            {
+                TempData["Message"] = "Login fail";
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
