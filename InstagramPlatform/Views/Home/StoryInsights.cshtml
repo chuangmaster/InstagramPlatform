@@ -1,0 +1,28 @@
+﻿@model List<InstagramWebhookEntry<ChangeModel<StoryInsightsValueModel>>>
+@{
+    ViewBag.Title = "StoryInsights";
+}
+
+<h2>StoryInsights</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>MediaId</th>
+            <th>Replies</th>
+            <th>Reach</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            foreach (var c in m.Changes)
+            {
+                <tr>
+                    <td>@c.Type.MediaId</td>
+                    <td>@c.Type.Replies</td>
+                    <td>@c.Type.Reach</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -33,6 +33,7 @@ namespace InstagramPlatform.Controllers
         [Route("~/Auth")]
         public async Task<ActionResult> Auth(string code, string state)
         {
+            
             InstagramBasicDisplayService service = new InstagramBasicDisplayService();
             var changeResult = await service.ExchangeToken(ClientId, AppSecret, code, "https://12bdfb65.ngrok.io/Auth");
             if (changeResult != null)

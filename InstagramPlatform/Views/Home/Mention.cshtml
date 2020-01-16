@@ -1,0 +1,27 @@
+﻿@model List<InstagramWebhookEntry<ChangeModel<MentionValueModel>>>
+@{
+    ViewBag.Title = "Mention";
+}
+
+<h2>Mention</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Media Id</th>
+            <th>Comment Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            foreach (var c in m.Changes)
+            {
+                <tr>
+                    <td>@c.Type.MediaId</td>
+                    <td>@c.Type.CommentId</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
